@@ -4,7 +4,6 @@ async function Graph(){
     await prix("BNB")
     await prix("SOL")
     data = await getData()
-    dataETH = await getDataETH()
     console.log()
     const prixBTC = document.getElementById("prixBTC");
   const prixBTCChart = new Chart(prixBTC,{
@@ -14,54 +13,28 @@ async function Graph(){
       datasets:[{
         data:data.map(row => row.open),
         label: "Bitcoin",
-        borderColor: "#3e95cd",
-        fill: false
+        borderColor: '#3e95cd',
+        borderJoinStyle: 'round',
+        borderCapStyle: 'round',
+        borderWidth: 3,
+        pointRadius: 0,
+        pointHitRadius: 10,
+        lineTension: .2
       }]
     },
     options: {
-        title: {
-          display: true,
-          text: 'Prix cryptomonaie'
-        }
+      plugins: {
+          legend: {
+              display: false,
+          }
       }
-  })
-  const prixETH = document.getElementById("prixETH");
-  const prixETHChart = new Chart(prixETH,{
-    type:"line",
-    data:{
-      labels: dataETH.map(row => row.time),
-      datasets:[{
-        data:dataETH.map(row => row.open),
-        label: "Ethereum",
-        borderColor: "#3e95cd",
-        fill: false
-      }]
-    },
-    options: {
-        title: {
-          display: true,
-          text: 'Prix cryptomonaie'
-        }
-      }
+  }
   })
 }
 async function getData() {
     try {
       const response = await fetch(
         `https://min-api.cryptocompare.com/data/v2/histominute?fsym=BTC&tsym=USD&limit=50&api_key=5d8daf017d0c5d2feb42a706987d1ab05233dc0effabaab6d4418ceed53ac14e`
-      );
-      const data = await response.json();
-      console.log(data.Data.Data)
-      return data.Data.Data
-  
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  async function getDataETH() {
-    try {
-      const response = await fetch(
-        `https://min-api.cryptocompare.com/data/v2/histominute?fsym=ETH&tsym=USD&limit=50&api_key=5d8daf017d0c5d2feb42a706987d1ab05233dc0effabaab6d4418ceed53ac14e`
       );
       const data = await response.json();
       console.log(data.Data.Data)
