@@ -1,6 +1,5 @@
 async function Graph(){
     data = await getData()
-    console.log()
     const prixBTC = document.getElementById("prixBTC");
   const prixBTCChart = new Chart(prixBTC,{
     type:"line",
@@ -33,7 +32,6 @@ async function getData() {
         `https://min-api.cryptocompare.com/data/v2/histominute?fsym=BTC&tsym=USD&limit=50&api_key=5d8daf017d0c5d2feb42a706987d1ab05233dc0effabaab6d4418ceed53ac14e`
       );
       const data = await response.json();
-      console.log(data.Data.Data)
       return data.Data.Data
   
     } catch (error) {
@@ -47,7 +45,6 @@ const btcData = async () => {
   const data = json.Data.Data
   const times = data.map(obj => obj.time)
   const prices = data.map(obj => obj.high)
-  console.log(prices)
   return {
     times,
     prices
@@ -90,23 +87,24 @@ function checkStatus(response) {
   }
 }
 
-
+/// Charts ///
+let createBtcChart
+let createCosmosChart
+let createethereumChart
 
 
 async function printBtcChart() {
   let { times, prices } = await btcData()
-  console.log(price)
-  let btcChart = document.getElementById('btcChart');
-
-  let gradient = btcChart.createLinearGradient(0, 0, 0, 400);
+  let btcChart = await document.getElementById('btcChart').getContext('2d');
+  
+  let gradient = await btcChart.createLinearGradient(0, 0, 0, 400);
 
   gradient.addColorStop(0, 'rgba(247,147,26,.5)');
   gradient.addColorStop(.425, 'rgba(255,193,119,0)');
-
   Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
   Chart.defaults.global.defaultFontSize = 12;
 
-  createBtcChart = new Chart(btcChart, {
+  btcChartChart = new Chart(btcChart, {
     type: 'line',
     data: {
       labels: times,
@@ -177,7 +175,6 @@ async function printBtcChart() {
 
 
 async function printCosmosChart() {
-  console.log("test")
   let { times, prices } = await cosmosData()
 
   let cosmosChart = document.getElementById('cosmosChart').getContext('2d');
@@ -363,10 +360,8 @@ async function updateBitcoinPrice() {
   document.getElementById("btcPrice").innerHTML = "$" + currentPrice;
 }
 
-updateEthereumPrice()
-updateCosmosPrice()
 updateBitcoinPrice()
+updateCosmosPrice()
 
 printBtcChart()
 printCosmosChart()
-printEthereumChart()
