@@ -1,6 +1,39 @@
+async function newGraph(CRY){
+  document.getElementById("crypto").style.display = "block";
+  document.getElementById("crypto").innerHTML = "Courbe " + CRY;
+  console.log("test")
+  data = await getData(CRY)
+  const prixBTC = document.getElementById("prixBTC");
+  const prixBTCChart = new Chart(prixBTC,{
+    type:"line",
+    data:{
+      labels: data.map(row => new Date(row.time * 1000).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })),
+      datasets:[{
+        data:data.map(row => row.open),
+        label: CRY,
+        borderColor: '#3e95cd',
+        borderJoinStyle: 'round',
+        borderCapStyle: 'round',
+        borderWidth: 3,
+        pointRadius: 0,
+        pointHitRadius: 10,
+        lineTension: .2
+      }]
+    },
+    options: {
+      plugins: {
+          legend: {
+              display: false,
+          }
+      }
+  }
+  })
+}
 async function Graph(){
-    data = await getData()
-    const prixBTC = document.getElementById("prixBTC");
+  data = await getData("BTC")
+  document.getElementById("crypto").style.display = "block";
+  document.getElementById("crypto").innerHTML = "Courbe BTC";
+  const prixBTC = document.getElementById("prixBTC");
   const prixBTCChart = new Chart(prixBTC,{
     type:"line",
     data:{
@@ -26,10 +59,10 @@ async function Graph(){
   }
   })
 }
-async function getData() {
+async function getData(CRY) {
     try {
       const response = await fetch(
-        `https://min-api.cryptocompare.com/data/v2/histominute?fsym=BTC&tsym=USD&limit=50&api_key=5d8daf017d0c5d2feb42a706987d1ab05233dc0effabaab6d4418ceed53ac14e`
+        `https://min-api.cryptocompare.com/data/v2/histominute?fsym=${CRY}&tsym=USD&limit=50&api_key=5d8daf017d0c5d2feb42a706987d1ab05233dc0effabaab6d4418ceed53ac14e`
       );
       const data = await response.json();
       return data.Data.Data
