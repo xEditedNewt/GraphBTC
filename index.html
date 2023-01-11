@@ -7,10 +7,15 @@
   <title>
     Graph Crypto
   </title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="./js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+  <link href="./js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <link href="./css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
-  <link href="./styles.css" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
 </head>
+
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
@@ -72,36 +77,58 @@
         <div class="header-body">
           <!-- Card stats -->
           <div class="row">
-            <div class="col-xl-3 col-lg-6">
-              <div class="cards card-stats mb-4 mb-xl-0">
-                      <bitcoin style="width: 30%" class="btc">
-                        <card class="asset-info">
-                            <div class="title">
-                                <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/btc.svg" width="15%"> 
-                                <h1>Bitcoin</h1>
-                            </div>
-                            <div class="details">
-                                <h2 class="asset-price" id="btcPrice"></h2>
-                            </div>
-                        </card>
-                        <canvas id="btcChart"></canvas>
-                    </bitcoin>
-              </div>
-              <div class="cards card-stats mb-4 mb-xl-0">
-                <cosmos style="width: 30%" class="cosmos">
-                  <card class="asset-info">
-                      <div class="title">
-                          <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/atm.svg" width="15%"> 
-                          <h1>Cosmos</h1>
-                      </div>
-                      <div class="details">
-                          <h2 class="asset-price" id="atomPrice"></h2>
-                      </div>
-                  </card>
-                  <canvas id="cosmosChart"></canvas>
+            <cards class="cardss">
+              <bitcoin style="width: 30%" class="btc">
+                <card class="asset-info">
+                  <div class="title">
+                    <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/btc.svg" width="15%">
+                    <h1>Bitcoin</h1>
+                  </div>
+                  <div class="details">
+                    <h2 class="asset-price" id="btcPrice"></h2>
+                  </div>
+                </card>
+                <canvas id="btcChart"></canvas>
+              </bitcoin>
+        
+              <cosmos style="width: 30%" class="cosmos">
+                <card class="asset-info">
+                  <div class="title">
+                    <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/atm.svg" width="15%">
+                    <h1>Cosmos</h1>
+                  </div>
+                  <div class="details">
+                    <h2 class="asset-price" id="atomPrice"></h2>
+                  </div>
+                </card>
+                <canvas id="cosmosChart"></canvas>
               </cosmos>
-            </div>
-            </div>
+        
+              <ethereum style="width: 30%" class="ethereum">
+                <card class="asset-info">
+                  <div class="title">
+                    <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg" width="10%">
+                    <h1>Ethereum</h1>
+                  </div>
+                  <div class="details">
+                    <h2 class="asset-price" id="ethPrice"></h2>
+                  </div>
+                </card>
+                <canvas id="ethereumChart"></canvas>
+              </ethereum>
+              <bnb style="width: 30%" class="bnb">
+                <card class="asset-info">
+                  <div class="title">
+                    <img src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/bnb.svg" width="10%">
+                    <h1>BNB</h1>
+                  </div>
+                  <div class="details">
+                    <h2 class="asset-price" id="bnbPrice"></h2>
+                  </div>
+                </card>
+                <canvas id="bnbChart"></canvas>
+              </bnb>
+            </cards>
           </div>
         </div>
       </div>
@@ -113,7 +140,7 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h2 class="text-white mb-0">Prix Cryptomonaie</h2>
+                  <h2 class="text-white mb-0">Prix Bitcoin</h2>
                 </div>
                 <div class="col">
                   <ul class="nav nav-pills justify-content-end">
@@ -135,10 +162,11 @@
       <footer class="footer">
       </footer>
     </div>
-  </div>
+  </div> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
   <script src="app.js"></script>
-  <script> Graph();
+  <script>
+    Graph()
   </script>
 </body>
-
 </html>
