@@ -20,16 +20,20 @@ p {
     justify-content: center;
 }
 
-
-
 cards {
     width: auto;
     display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-inline: auto;
 }
-
+.asset-info {
+  margin: 5px;
+}
+.btc, .cosmos, .ethereum, .bnb {
+  margin: 5px;
+}
 .btc,
 .cosmos,
 .bnb,
