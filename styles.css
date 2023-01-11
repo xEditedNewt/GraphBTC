@@ -32,6 +32,7 @@ cards {
 
 .btc,
 .cosmos,
+.bnb,
 .ethereum {
     display: grid;
     max-width: 300px;
@@ -42,10 +43,12 @@ cards {
         "info"
         "chart";
     border-radius: 30px;
+    background-color: white;
+    align-items: center;
 }
 
 .btc {
-    box-shadow: 10px 10px 20px 1px rgba(247,147,26,.15);
+    box-shadow: auto rgba(247,147,26,.15);
 }
 
 .cosmos {
@@ -55,7 +58,9 @@ cards {
 .ethereum {
     box-shadow: 10px 10px 20px 1px rgba(78,56,216,.15);
 }
-
+.bnb {
+  box-shadow: 10px 10px 20px 1px rgba(52, 32, 179, 0.15);
+}
 .asset-info {
     grid-area: info;
     display: inline-flex;
@@ -75,6 +80,7 @@ card h1 {
 
 
 #btcChart,
+#bnbChart,
 #cosmosChart,
 #ethereumChart {
     grid-area: chart;
